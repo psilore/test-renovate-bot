@@ -24,7 +24,7 @@ jobs:
           echo "BASE: ${{ env.GITHUB_BASE_REF_SLUG }}"
           echo "EVENT: ${{ env.GITHUB_EVENT_REF_SLUG }}"
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Install Node.js
         uses: actions/setup-node@v2
