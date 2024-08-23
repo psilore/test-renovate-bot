@@ -1,4 +1,4 @@
-name: renovate
+name: on push
 
 on:
   push:
@@ -11,14 +11,18 @@ jobs:
   on-push:
     runs-on: ubuntu-latest
     steps:
+      - name: Slugify github variables
+        uses: rlespinasse/github-slug-action@v4.5.0
+
       - name: Echo
         run: |
-          echo "Event name:${{ github.event_name }}"
-          echo "Branch name:${{ github.ref }}"
-          echo "Repository name:${{ github.repository }}"
-          echo "Repository owner:${{ github.repository_owner }}"
-          echo "HEAD:${{ github.head_ref }}"
-          echo "HEAD:${{ github.base_ref }}"
+          echo "Event name: ${{ github.event_name }}"
+          echo "Branch name: ${{ env.GITHUB_EVENT_REF_SLUG_URL }}"
+          echo "Repository name: ${{ github.repository }}"
+          echo "Repository owner: ${{ github.repository_owner }}"
+          echo "HEAD: ${{ env.GITHUB_HEAD_REF_SLUG }}"
+          echo "BASE: ${{ env.GITHUB_BASE_REF_SLUG }}"
+          echo "EVENT: ${{ env.GITHUB_EVENT_REF_SLUG }}"
 
       - uses: actions/checkout@v2
 

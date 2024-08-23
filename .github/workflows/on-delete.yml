@@ -6,6 +6,9 @@ jobs:
   on-push:
     runs-on: ubuntu-latest
     steps:
+      - name: Slugify github variables
+        uses: rlespinasse/github-slug-action@v4.5.0
+
       - name: Echo
         run: |
           echo "Event name:${{ github.event_name }}"
