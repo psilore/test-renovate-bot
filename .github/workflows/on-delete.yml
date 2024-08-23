@@ -3,7 +3,7 @@ name: on delete
 on: delete
 
 jobs:
-  on-push:
+  on-delete:
     runs-on: ubuntu-latest
     steps:
       - name: Slugify github variables
