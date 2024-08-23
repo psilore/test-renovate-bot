@@ -20,7 +20,7 @@ jobs:
           echo "HEAD:${{ github.head_ref }}"
           echo "HEAD:${{ github.base_ref }}"
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Install Node.js
         uses: actions/setup-node@v2
