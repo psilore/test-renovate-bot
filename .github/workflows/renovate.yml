@@ -1,0 +1,34 @@
+name: renovate
+
+on:
+  push:
+    branches-ignore:
+      - master
+      - main
+      - release
+
+jobs:
+  on-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo
+        run: |
+          echo "Event name:${{ github.event_name }}"
+          echo "Branch name:${{ github.ref }}"
+          echo "Repository name:${{ github.repository }}"
+          echo "Repository owner:${{ github.repository_owner }}"
+          echo "HEAD:${{ github.head_ref }}"
+          echo "HEAD:${{ github.base_ref }}"
+
+      - uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run app.js
+        run: npm run start

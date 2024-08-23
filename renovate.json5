@@ -1,0 +1,110 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "timezone": "Europe/Stockholm",
+  "schedule": [
+    "on Friday",
+    "after 4pm on Friday"
+  ],
+  "extends": [
+    "config:recommended",
+    ":prHourlyLimit4",
+    ":semanticCommits",
+    ":semanticCommitTypeAll(fix)",
+    ":automergePatch"
+  ],
+  "labels": [
+    "renovate"
+  ],
+  "separateMinorPatch": true,
+  "prConcurrentLimit": 10,
+  "branchConcurrentLimit": 10,
+  "branchPrefix": "rv8-",
+  "hashedBranchLength": 26,
+  "packageRules": [
+    {
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "addLabels": [
+        "docker"
+      ],
+      "automerge": true,
+      "prCreation": "not-pending",
+      "groupName": "Docker non-major dependencies",
+      "groupSlug": "docker-minor-patch"
+    },
+    {
+      "matchDatasources": [
+        "github-tags"
+      ],
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "bump"
+      ],
+      "automerge": true,
+      "prCreation": "not-pending",
+      "groupName": "Github actions",
+      "groupSlug": "github-actions"
+    },
+    {
+      "matchDatasources": [
+        "github-releases"
+      ],
+      "matchPackagePatterns": [
+        "!/^0/"
+      ],
+      "matchUpdateTypes": [
+        "patch",
+        "minor",
+        "bump",
+        "pin",
+        "digest"
+      ],
+      "automerge": true,
+      "prCreation": "not-pending",
+      "groupName": "Github releases non-major dependencies",
+      "groupSlug": "github-releases"
+    },
+    {
+      "matchDatasources": [
+        "terraform-provider"
+      ],
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "patch"
+      ],
+      "automerge": true,
+      "prCreation": "not-pending",
+      "groupName": "Terraform provider non-major dependencies",
+      "groupSlug": "tf-provider"
+    },
+    {
+      "matchDatasources": [
+        "terraform-module"
+      ],
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "patch"
+      ],
+      "automerge": true,
+      "prCreation": "not-pending",
+      "groupName": "Terraform module non-major dependencies",
+      "groupSlug": "tf-module-patch"
+    }
+  ]
+}
